@@ -1,0 +1,25 @@
+<!-- No tab because the display of the text area -->
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+<form method="POST" action="">
+{{ form.hidden_tag() }}
+<fieldset class="form-group">
+<legend class="border-bottom mb-4"> An Instagram Public Figure</legend>
+<div class="form-group">
+{{ form.figurename.label(class="form-control-label") }}
+{{ form.figurename(class="form-control form-control-lg") }}
+</div>
+<textarea disabled rows="3" cols="30">
+{% for x in thelist %}{{x}}
+{% endfor %}</textarea>
+<div class="form-group">
+{{ form.submit(class= "btn-outline-info") }}
+</div>
+</fieldset>
+</form>
+</div>
+<div class="container">
+<a href= {{ urlNew }}>{{ urlNew }}</a>
+</div>
+{% endblock content %}
