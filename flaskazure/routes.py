@@ -11,26 +11,26 @@ from azure.storage import CloudStorageAccount
 from azure.storage.table import TableService, Entity
 
 def dbAzureApp(figure_name, is_inserted):
-    account_name = 'shanistorage'
-    account_key = 'j1COI4eq+p/Yl/e8dVCAiaHX/ly1StLuFAlgalNhVI+rjU8YL6wkWlulld4XIZ/5kjnrqkFyGhQsVo68y9NWpg=='
+    account_name = 'Insert storage name'
+    account_key = 'Insert storage key'
     account = CloudStorageAccount(account_name, account_key)
     table_service = None
     the_figures=[]
     try:
         table_service = account.create_table_service()
-        table_name = 'azureFirstStor'
+        table_name = 'Insert table name'
         #insret to a list by order
-        byord=0
+        by_ord=0
         for entity in table_service.query_entities(table_name):
             the_figures.insert(byord,entity['NameFigure'])
-            byord +=1
+            by_ord +=1
         if is_inserted is True:
             str_coun= str(byord)
             part_key= 'N' + str_coun
             figure_new = {'PartitionKey': part_key, 'RowKey': str_coun, 'NameFigure' : figure_name}
             # Insert the entity into the table
             table_service.insert_entity(table_name, figure_new)
-            the_figures.insert(byord,figurename)   
+            the_figures.insert(by_ord,figure_name)   
              #if want to delete an entity
          #   table_service.delete_entity(table_name, part_key, str_coun)
     except Exception as e:
@@ -39,7 +39,7 @@ def dbAzureApp(figure_name, is_inserted):
 
 
 def bingWebSearch(figure_name_ins):
-	subscription_key = "0c8b96989c754e2c80fb0dfd4c5881f9"
+	subscription_key = "Insert subscription key"
 	assert subscription_key
 	search_url = "https://api.cognitive.microsoft.com/bing/v7.0/search"
 	search_term = figure_name_ins
