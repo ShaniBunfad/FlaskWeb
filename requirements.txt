@@ -1,6 +1,5 @@
 Flask
 wtforms
 requests
-json
 azure
 azure-storage
