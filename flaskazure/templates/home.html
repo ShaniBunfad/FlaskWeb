@@ -11,7 +11,7 @@
 {{ form.figurename(class="form-control form-control-lg") }}
 </div>
 <textarea disabled rows="3" cols="30">
-{% for x in thelist %}{{x}}
+{% for x in the_list %}{{x}}
 {% endfor %}</textarea>
 <div class="form-group">
 {{ form.submit(class= "btn-outline-info") }}
@@ -20,6 +20,6 @@
 </form>
 </div>
 <div class="container">
-<a href= {{ urlNew }}>{{ urlNew }}</a>
+<a href= {{ url_new }}>{{ url_new }}</a>
 </div>
 {% endblock content %}
