@@ -20,20 +20,19 @@ def dbAzureApp(figurename, isinserted):
         table_service = account.create_table_service()
         table_name = 'azureFirstStor'
         #insret to a list by order
-        byord=0
+        by_ord=0
         for entity in table_service.query_entities(table_name):
-            the_figures.insert(byord,entity['NameFigure'])
-            byord +=1
+            the_figures.insert(by_ord,entity['NameFigure'])
+            by_ord +=1
         if isinserted is True:
-            str_coun= str(byord)
-            partKey= 'N' + str_coun
-            figure_new = {'PartitionKey': partKey, 'RowKey': str_coun, 'NameFigure' : figurename}
+            str_coun= str(by_ord)
+            part_key= 'N' + str_coun
+            figure_new = {'PartitionKey': part_key, 'RowKey': str_coun, 'NameFigure' : figurename}
             # Insert the entity into the table
             table_service.insert_entity(table_name, figure_new)
-            the_figures.insert(byord,figurename)   
-        #if isinserted is True:
+            the_figures.insert(by_ord,figurename)   
              # delete an entity
-         #   table_service.delete_entity(table_name, partKey, str_coun)
+         #   table_service.delete_entity(table_name, part_key, str_coun)
     except Exception as e:
         print('Error occurred in the sample. Please make sure the account name and key are correct.', e)
     return the_figures
@@ -52,8 +51,8 @@ def bingWebSearch(figurenameins):
 	search_results = response.json()
 	if search_results is None:
 		return ""
-	theUrl=search_results['webPages']['value'][0]['url']
-	return theUrl
+	the_url=search_results['webPages']['value'][0]['url']
+	return the_url
 
 
 @app.route("/", methods=['GET', 'POST'])
