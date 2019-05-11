@@ -10,6 +10,7 @@ import azure.common
 from azure.storage import CloudStorageAccount
 from azure.storage.table import TableService, Entity
 
+#Displaing the recent searched figures from an Azure DataBase, And insert if the user push the submit button
 def dbAzureApp(figurename, isinserted):
     account_name = 'shanistorage'
     account_key = 'j1COI4eq+p/Yl/e8dVCAiaHX/ly1StLuFAlgalNhVI+rjU8YL6wkWlulld4XIZ/5kjnrqkFyGhQsVo68y9NWpg=='
@@ -37,7 +38,7 @@ def dbAzureApp(figurename, isinserted):
         print('Error occurred in the sample. Please make sure the account name and key are correct.', e)
     return the_figures
 
-
+#Searching the public figure Instagram the user inserted
 def bingWebSearch(figurenameins):
 	subscription_key = "0c8b96989c754e2c80fb0dfd4c5881f9"
 	assert subscription_key
