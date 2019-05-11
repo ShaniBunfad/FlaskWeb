@@ -10,7 +10,7 @@ import azure.common
 from azure.storage import CloudStorageAccount
 from azure.storage.table import TableService, Entity
 
-def dbAzureApp(figurename, isinserted):
+def dbAzureApp(figure_name, is_inserted):
     account_name = 'shanistorage'
     account_key = 'j1COI4eq+p/Yl/e8dVCAiaHX/ly1StLuFAlgalNhVI+rjU8YL6wkWlulld4XIZ/5kjnrqkFyGhQsVo68y9NWpg=='
     account = CloudStorageAccount(account_name, account_key)
@@ -24,26 +24,25 @@ def dbAzureApp(figurename, isinserted):
         for entity in table_service.query_entities(table_name):
             the_figures.insert(byord,entity['NameFigure'])
             byord +=1
-        if isinserted is True:
+        if is_inserted is True:
             str_coun= str(byord)
-            partKey= 'N' + str_coun
-            figure_new = {'PartitionKey': partKey, 'RowKey': str_coun, 'NameFigure' : figurename}
+            part_key= 'N' + str_coun
+            figure_new = {'PartitionKey': part_key, 'RowKey': str_coun, 'NameFigure' : figure_name}
             # Insert the entity into the table
             table_service.insert_entity(table_name, figure_new)
             the_figures.insert(byord,figurename)   
-        #if isinserted is True:
-             # delete an entity
-         #   table_service.delete_entity(table_name, partKey, str_coun)
+             #if want to delete an entity
+         #   table_service.delete_entity(table_name, part_key, str_coun)
     except Exception as e:
         print('Error occurred in the sample. Please make sure the account name and key are correct.', e)
     return the_figures
 
 
-def bingWebSearch(figurenameins):
+def bingWebSearch(figure_name_ins):
 	subscription_key = "0c8b96989c754e2c80fb0dfd4c5881f9"
 	assert subscription_key
 	search_url = "https://api.cognitive.microsoft.com/bing/v7.0/search"
-	search_term = figurenameins
+	search_term = figure_name_ins
 
 	headers = {"Ocp-Apim-Subscription-Key" : subscription_key}
 	params  = {"q": search_term, "count": 1}
@@ -65,7 +64,7 @@ def home():
         figure_name_ins= figure_name + 'Instagram'
         #added
         url_adress=bingWebSearch(figure_name_ins)
-        indic=dbAzureApp(figurename, True)
+        indic=dbAzureApp(figure_name, True)
         return render_template('home.html',form=form, url_new=url_adress, the_list=indic)
     indic=dbAzureApp("", False)
     return render_template('home.html', form=form, the_list=indic)
