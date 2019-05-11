@@ -52,8 +52,8 @@ def bingWebSearch(figurenameins):
 	search_results = response.json()
 	if search_results is None:
 		return ""
-	theUrl=search_results['webPages']['value'][0]['url']
-	return theUrl
+	the_url=search_results['webPages']['value'][0]['url']
+	return the_url
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -61,12 +61,12 @@ def bingWebSearch(figurenameins):
 def home():
     form=PublicFigureForm()
     if form.validate_on_submit():
-        figurename=form.figurename.data
-        figurenameins= figurename + 'Instagram'
+        figure_name=form.figurename.data
+        figure_name_ins= figure_name + 'Instagram'
         #added
-        urlAdress=bingWebSearch(figurenameins)
+        url_adress=bingWebSearch(figure_name_ins)
         indic=dbAzureApp(figurename, True)
-        return render_template('home.html',form=form, urlNew=urlAdress, thelist=indic)
+        return render_template('home.html',form=form, url_new=url_adress, the_list=indic)
     indic=dbAzureApp("", False)
-    return render_template('home.html', form=form, thelist=indic)
+    return render_template('home.html', form=form, the_list=indic)
 
